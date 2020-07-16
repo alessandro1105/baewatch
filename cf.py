@@ -1,8 +1,9 @@
-from surprise import KNNWithMeans
+from surprise import KNNWithZScore
 
 # To use user-based cosine similarity
 sim_options = {
-    "name": "cosine",
-    "user_based": True,  # Compute  similarities between items
+    "name": "pearson",
+    "user_based": True,  # Compute similarities between users
+    "min_support": 10,
 }
-cf = KNNWithMeans(sim_options=sim_options)
+cf = KNNWithZScore(sim_options=sim_options)

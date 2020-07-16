@@ -1,6 +1,7 @@
 from data import data, users_n, items_n, min_rating, max_rating
 from cf import cf
 from baewatch import baewatch
+import random
 
 # # Get the trainset
 trainset = data.build_full_trainset()
@@ -9,7 +10,10 @@ trainset = data.build_full_trainset()
 cf.fit(trainset)
 
 # Now let's select group of users randomly
-group = [str(99), str(456), str(96), str(1)]
+n_users = random.randrange(2, 10) # Groups from 2 to 10 people
+group = []
+for i in range(n_users):
+    group.append(str(random.randrange(1, users_n)))
 
 # Prepare the items on which users did not give any ratings (movies not watched)
 items = [str(x) for x in range(1, items_n)]
